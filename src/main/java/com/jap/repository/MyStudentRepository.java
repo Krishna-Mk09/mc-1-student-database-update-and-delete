@@ -14,7 +14,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyStudentRepository {
+public class MyStudentRepository implements Repository<MyStudent> {
     /**
      * It takes a connection object and a MyStudent object as parameters, and returns true if the MyStudent object was
      * successfully inserted into the database, and false otherwise
@@ -23,6 +23,7 @@ public class MyStudentRepository {
      * @param mystudents The object that we want to insert into the database.
      * @return The number of rows affected by the query.
      */
+    @Override
     public boolean add(Connection connection, MyStudent mystudents) throws SQLException {
         // 1. write the query for inserting a new salesperson object into the `sales_person` table
         String insertQuery = "INSERT INTO `myschool`.`mystudent` " + "(`name`, `rollNumber`, `grade`,`totalMarks`) " + "VALUES (?, ?, ?, ?);";
@@ -46,9 +47,10 @@ public class MyStudentRepository {
      * @param connection The connection object that is used to connect to the database.
      * @return A list of MyStudent objects
      */
+    @Override
     public List<MyStudent> getAll(Connection connection) throws SQLException {
         // 1. write the query for selecting all the salesperson objects from the `sales_person` table
-        String readQuery = "SELECT * FROM `myschool`.`mystudent`;";
+        String readQuery = "SELECT * FROM `myschool`.`mystudents`;";
         List<MyStudent> myStudent = new ArrayList<>();
         // 2. create a statement object
         try (Statement statement = connection.createStatement()) {
@@ -58,9 +60,9 @@ public class MyStudentRepository {
             while (myStudentResultSet.next()) {
                 // 5. fetch the values of the current row from the result set
                 String name = myStudentResultSet.getString("name");
-                int rollNumber = myStudentResultSet.getInt("rollNumber");
-                String city = myStudentResultSet.getString("grades");
-                int totalMarks = myStudentResultSet.getInt("totalMarks");
+                int rollNumber = myStudentResultSet.getInt("roll_Number");
+                String city = myStudentResultSet.getString("grade");
+                int totalMarks = myStudentResultSet.getInt("total_Marks");
                 // 6. create a salesperson object using the values fetched from the result set
                 MyStudent myStudent1 = new MyStudent(name, rollNumber, city, totalMarks);
                 // 7. add the salesperson object to the list
@@ -78,6 +80,7 @@ public class MyStudentRepository {
      * @param totalMarks The total marks of the student whose roll number is to be updated.
      * @return The number of rows affected by the update query.
      */
+    @Override
     public boolean updateRollNumbers(Connection connection, int rollNumber, int totalMarks) throws SQLException {
         String updateQuery = "UPDATE `myschool`.`mystudent` SET `rollNumber` = ? WHERE (`totalMarks` = ?);";
         int numberOfRowsAffected;
@@ -90,6 +93,7 @@ public class MyStudentRepository {
     }
 
     // Deleting the student with the given roll number.
+    @Override
     public boolean deleteByRollNumber(Connection connection, int rollNumber) throws SQLException {
         String deleteQuery = "DELETE FROM `myschool`.`mystudent` WHERE (`rollNumber` = ?);";
         int numberOfRowsAffected;

@@ -9,7 +9,8 @@ public interface Repository<T> {
 
     List<T> getAll(Connection connection) throws SQLException;
 
-    T getById(Connection connection, int id) throws SQLException;
+    boolean updateRollNumbers(Connection connection, int rollNumber, int totalMarks) throws SQLException;
 
-    boolean deleteById(Connection connection, int id) throws SQLException;
+    // Deleting the student with the given roll number.
+    boolean deleteByRollNumber(Connection connection, int rollNumber) throws SQLException;
 }
