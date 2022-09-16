@@ -9,4 +9,7 @@
 package com.jap;
 
 public class MyStudentImpl {
+    public static void main(String[] args) {
+
+    }
 }
