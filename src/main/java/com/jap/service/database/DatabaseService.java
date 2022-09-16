@@ -19,4 +19,8 @@ public class DatabaseService {
     public Connection getConnection(){
         return connection;
     }
+
+    public DatabaseService(Connection connection) {
+        this.connection = null;
+    }
 }
