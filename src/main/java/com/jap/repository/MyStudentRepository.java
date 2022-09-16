@@ -9,4 +9,5 @@
 package com.jap.repository;
 
 public class MyStudentRepository {
+
 }
