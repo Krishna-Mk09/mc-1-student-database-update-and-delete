@@ -9,4 +9,8 @@
 package com.jap.model;
 
 public class MyStudent {
+    private String name;
+    private int rollNumber;
+    private String grade;
+    private int totalMarks;
 }
