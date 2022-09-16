@@ -15,10 +15,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyStudentRepository {
+    /**
+     * It takes a connection object and a MyStudent object as parameters, and returns true if the MyStudent object was
+     * successfully inserted into the database, and false otherwise
+     *
+     * @param connection The connection object that is used to connect to the database.
+     * @param mystudents The object that we want to insert into the database.
+     * @return The number of rows affected by the query.
+     */
     public boolean add(Connection connection, MyStudent mystudents) throws SQLException {
         // 1. write the query for inserting a new salesperson object into the `sales_person` table
         String insertQuery = "INSERT INTO `myschool`.`mystudent` " + "(`name`, `rollNumber`, `grade`,`totalMarks`) " + "VALUES (?, ?, ?, ?);";
-
         // 2. create a statement object
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -33,6 +40,12 @@ public class MyStudentRepository {
         return numberOfRowsAffected > 0;
     }
 
+    /**
+     * It creates a list of salesperson objects by iterating over the result set returned by the query
+     *
+     * @param connection The connection object that is used to connect to the database.
+     * @return A list of MyStudent objects
+     */
     public List<MyStudent> getAll(Connection connection) throws SQLException {
         // 1. write the query for selecting all the salesperson objects from the `sales_person` table
         String readQuery = "SELECT * FROM `myschool`.`mystudent`;";
@@ -57,6 +70,14 @@ public class MyStudentRepository {
         return myStudent;
     }
 
+    /**
+     * It updates the roll number of all students who have scored the total marks specified by the second parameter
+     *
+     * @param connection The connection object that is used to connect to the database.
+     * @param rollNumber The new roll number to be updated.
+     * @param totalMarks The total marks of the student whose roll number is to be updated.
+     * @return The number of rows affected by the update query.
+     */
     public boolean updateRollNumbers(Connection connection, int rollNumber, int totalMarks) throws SQLException {
         String updateQuery = "UPDATE `myschool`.`mystudent` SET `rollNumber` = ? WHERE (`totalMarks` = ?);";
         int numberOfRowsAffected;
@@ -68,6 +89,7 @@ public class MyStudentRepository {
         return numberOfRowsAffected > 0;
     }
 
+    // Deleting the student with the given roll number.
     public boolean deleteByRollNumber(Connection connection, int rollNumber) throws SQLException {
         String deleteQuery = "DELETE FROM `myschool`.`mystudent` WHERE (`rollNumber` = ?);";
         int numberOfRowsAffected;
