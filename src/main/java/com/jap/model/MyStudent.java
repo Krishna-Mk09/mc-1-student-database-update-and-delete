@@ -8,6 +8,8 @@
 
 package com.jap.model;
 
+import java.util.Objects;
+
 public class MyStudent {
     private String name;
     private int rollNumber;
@@ -54,5 +56,27 @@ public class MyStudent {
 
     public void setTotalMarks(int totalMarks) {
         this.totalMarks = totalMarks;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        MyStudent myStudent = (MyStudent) o;
+
+        if (rollNumber != myStudent.rollNumber) return false;
+        if (totalMarks != myStudent.totalMarks) return false;
+        if (!Objects.equals(name, myStudent.name)) return false;
+        return Objects.equals(grade, myStudent.grade);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + rollNumber;
+        result = 31 * result + (grade != null ? grade.hashCode() : 0);
+        result = 31 * result + totalMarks;
+        return result;
     }
 }
