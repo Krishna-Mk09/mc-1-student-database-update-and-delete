@@ -16,4 +16,11 @@ public class MyStudent {
 
     public MyStudent() {
     }
+
+    public MyStudent(String name, int rollNumber, String grade, int totalMarks) {
+        this.name = name;
+        this.rollNumber = rollNumber;
+        this.grade = grade;
+        this.totalMarks = totalMarks;
+    }
 }
