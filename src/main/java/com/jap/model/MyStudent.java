@@ -13,4 +13,7 @@ public class MyStudent {
     private int rollNumber;
     private String grade;
     private int totalMarks;
+
+    public MyStudent() {
+    }
 }
