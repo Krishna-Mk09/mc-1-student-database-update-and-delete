@@ -23,8 +23,10 @@ public class DatabaseService {
     // It's a constant variable that is used to store the password of the database.
     private static final String PASSWORD = "Krishna@81433*";
     // It's a constructor that is used to initialize the connection object.
+    // It's a variable that is used to store the connection object.
     private Connection connection;
 
+    // It's a constructor that is used to initialize the connection object.
     public DatabaseService() {
         this.connection = null;
     }

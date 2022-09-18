@@ -11,6 +11,5 @@ public interface Repository<T> {
 
     boolean updateRollNumbers(Connection connection, int rollNumber, int totalMarks) throws SQLException;
 
-    // Deleting the student with the given roll number.
     boolean deleteByRollNumber(Connection connection, int rollNumber) throws SQLException;
 }
