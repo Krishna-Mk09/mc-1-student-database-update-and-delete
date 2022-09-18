@@ -61,14 +61,14 @@ public class MyStudentImpl {
                         int rollNumber1 = scanner.nextInt();
                         System.out.println("enter total marks");
                         int totalMarks1 = scanner.nextInt();
-                        boolean myStudent2 = myStudentRepository.updateRollNumbers(connection, rollNumber1, totalMarks1);
+                        myStudentRepository.updateRollNumbers(connection, rollNumber1, totalMarks1);
                     }
                     break;
                     case 4: {
                         System.out.println("Delete a Student by rollNumber");
                         System.out.println("Enter the Student3 rollNumber: ");
                         rollNumber = scanner.nextInt();
-                        boolean byMarks = myStudentRepository.deleteByRollNumber(connection, rollNumber);
+                        myStudentRepository.deleteByRollNumber(connection, rollNumber);
                         break;
                     }
                     case 5: {
