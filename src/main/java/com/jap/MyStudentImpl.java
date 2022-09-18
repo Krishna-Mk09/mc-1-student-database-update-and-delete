@@ -19,7 +19,7 @@ import java.util.Scanner;
 public class MyStudentImpl {
     public static void main(String[] args) {
         DatabaseService databaseService = new DatabaseService();
-        int choice = -1;
+        int choice;
         do {
             System.out.println(" Welcome To The MyStudent DataBase Management System");
             System.out.println("------------------------------------------------------");
@@ -65,8 +65,8 @@ public class MyStudentImpl {
                     }
                     break;
                     case 4: {
-                        System.out.println("Delete a salesperson by ID");
-                        System.out.println("Enter the salesperson's ID: ");
+                        System.out.println("Delete a Student by rollNumber");
+                        System.out.println("Enter the Student3 rollNumber: ");
                         rollNumber = scanner.nextInt();
                         boolean byMarks = myStudentRepository.deleteByRollNumber(connection, rollNumber);
                         break;

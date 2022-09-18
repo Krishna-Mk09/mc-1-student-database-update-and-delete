@@ -26,7 +26,7 @@ public class MyStudentRepository implements Repository<MyStudent> {
     @Override
     public boolean add(Connection connection, MyStudent mystudents) throws SQLException {
         // 1. write the query for inserting a new salesperson object into the `sales_person` table
-        String insertQuery = "INSERT INTO `myschool`.`mystudent` " + "(`name`, `rollNumber`, `grade`,`totalMarks`) " + "VALUES (?, ?, ?, ?);";
+        String insertQuery = "INSERT INTO `myschool`.`mystudents` (`name`, `roll_number`, `grade`, `total_marks`) VALUES (?,?,?,?);";
         // 2. create a statement object
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(insertQuery)) {
@@ -82,11 +82,11 @@ public class MyStudentRepository implements Repository<MyStudent> {
      */
     @Override
     public boolean updateRollNumbers(Connection connection, int rollNumber, int totalMarks) throws SQLException {
-        String updateQuery = "UPDATE `myschool`.`mystudent` SET `rollNumber` = ? WHERE (`totalMarks` = ?);";
+        String updateQuery = "UPDATE `myschool`.`mystudents` SET `total_marks` = ? WHERE (`roll_number` = ?);";
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(updateQuery)) {
-            preparedStatement.setInt(1, rollNumber);
-            preparedStatement.setInt(2, totalMarks);
+            preparedStatement.setInt(1, totalMarks);
+            preparedStatement.setInt(2, rollNumber);
             numberOfRowsAffected = preparedStatement.executeUpdate();
         }
         return numberOfRowsAffected > 0;
@@ -95,7 +95,7 @@ public class MyStudentRepository implements Repository<MyStudent> {
     // Deleting the student with the given roll number.
     @Override
     public boolean deleteByRollNumber(Connection connection, int rollNumber) throws SQLException {
-        String deleteQuery = "DELETE FROM `myschool`.`mystudent` WHERE (`rollNumber` = ?);";
+        String deleteQuery = "DELETE FROM `myschool`.`mystudents` WHERE (`roll_number` = ?);";
         int numberOfRowsAffected;
         try (PreparedStatement preparedStatement = connection.prepareStatement(deleteQuery)) {
             preparedStatement.setInt(1, rollNumber);
