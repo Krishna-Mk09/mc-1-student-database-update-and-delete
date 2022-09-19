@@ -16,7 +16,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+/**
+ * It's a simple console application that allows you to add, view, update and delete students from a database
+ */
 public class MyStudentImpl {
+
     public static void main(String[] args) {
         DatabaseService databaseService = new DatabaseService();
         int choice;
@@ -83,9 +87,7 @@ public class MyStudentImpl {
                 exception.printStackTrace();
                 choice = 7;
             } finally {
-                {
-                    databaseService.printConnectStatus();
-                }
+                databaseService.printConnectStatus();
             }
         } while (choice != 7);
     }
